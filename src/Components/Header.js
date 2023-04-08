@@ -12,6 +12,7 @@ class Header extends Component{
               <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="me-auto">
                    <Nav.Link href="/india">India</Nav.Link>
+                    <Nav.Link href="/world">World</Nav.Link>
                 </Nav>
               </Navbar.Collapse>
             </Container>
