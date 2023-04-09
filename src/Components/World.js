@@ -35,6 +35,7 @@ class World extends Component{
             <table className="table table-primary table-bordered table-striped">
                 <thead>
                     <tr>
+                        <td></td>
                         <td>Country</td>
                         <td>Total Cases</td>
                         <td>Recovered</td>
@@ -46,7 +47,8 @@ class World extends Component{
                         filterCountries.map((itm,ky)=>{
                             return(
                                 <tr>
-                                    <td>{itm.country} <img style={{width:'60px',marginLeft:'30px'}} src={itm.countryInfo.flag}/></td>
+                                    <td> <img style={{width:'60px',marginLeft:'30px'}} src={itm.countryInfo.flag}/></td>
+                                    <td>{itm.country}</td>
                                     <td>{itm.cases}</td>
                                     <td>{itm.recovered}</td>
                                     <td>{itm.deaths}</td>
