@@ -27,7 +27,7 @@ class World extends Component{
               });
         return(
             <>
-            <Form className="col-md-12 mt-5">
+            <Form className="col-md-12 mt-3">
                                 <Form.Group className="mb-3" controlId="formBasicSearch">
                                         <Form.Control type="text" placeholder="Search a Country" onChange={(e)=>this.setState({searchCountries : e.target.value})}/>
                                 </Form.Group>
