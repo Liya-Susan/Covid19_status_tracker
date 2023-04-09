@@ -25,6 +25,7 @@ class World extends Component{
                   ? item.country.toLowerCase().includes(this.state.searchCountries.toLowerCase())
                   : item;
               });
+             
         return(
             <>
             <Form className="col-md-12 mt-3">
@@ -32,14 +33,14 @@ class World extends Component{
                                         <Form.Control type="text" placeholder="Search a Country" onChange={(e)=>this.setState({searchCountries : e.target.value})}/>
                                 </Form.Group>
                                 </Form>
-            <table className="table table-primary table-bordered table-striped">
+            <table className="table table-secondary table-bordered ">
                 <thead>
                     <tr>
-                        <td></td>
-                        <td>Country</td>
-                        <td>Total Cases</td>
-                        <td>Recovered</td>
-                        <td>Death</td>
+                        <th></th>
+                        <th >Country</th>
+                        <td >Total Cases</td>
+                        <td >Recovered</td>
+                        <td >Death</td>
                     </tr>
                 </thead>
                 <tbody>
