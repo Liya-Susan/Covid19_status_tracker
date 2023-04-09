@@ -1,28 +1,44 @@
-import React,{Component} from "react";
+import React,{Component, useState} from "react";
 import axios from "axios";
 import {Accordion} from 'react-bootstrap';
+import Form from 'react-bootstrap/Form';
+
 class Statedata extends Component{
     constructor(){
         super();
         this.state={
-            stateData:{}
-        }
+            stateData:{},
+            searchStates:" "
+        };
     }
 
     componentDidMount(){
         axios.get("https://data.covid19india.org/state_district_wise.json").then(response=>{
-            
             this.setState({stateData:response.data});
         });
     }
     render(){
         let keys=Object.keys(this.state.stateData);
+        const filterStates = keys.filter((item) => {
+            return this.state.searchStates !== ""
+              ? item.toLowerCase().includes(this.state.searchStates.toLowerCase())
+              : item;
+          });
+        
         return(
+            <>
             
+            <Form className="col-md-12 mt-5">
+                                <Form.Group className="mb-3" controlId="formBasicSearch">
+                                        <Form.Control type="text" placeholder="Search a State" onChange={(e)=>this.setState({searchStates : e.target.value})}/>
+                                </Form.Group>
+                                </Form>
             <div className="mt-2">
                 <Accordion>
-                    {
-                        keys.map((itm,ky)=>{
+                    {   
+                    
+                        
+                      filterStates.map((itm,ky)=>{
                             let districts = this.state.stateData[itm].districtData;
                             let district_keys=Object.keys(districts);
 
@@ -43,6 +59,7 @@ class Statedata extends Component{
                                 district_list.push(ob);
                             }
                             return(
+                                
                                 <Accordion.Item eventKey={ky}>
                                 <Accordion.Header >{itm}-<span className="btn-dark p-1 m-2">Total cases -{total_confirmed} </span><span className="btn-dark p-1 m-2">Active - {total_active}</span> <span className="btn-dark p-1 m-2">Recovered - {total_recover} </span><span className="btn-dark p-1 m-2">Death - {total_deaths}</span>  </Accordion.Header>
                                 <Accordion.Body>
@@ -82,6 +99,7 @@ class Statedata extends Component{
   
                 </Accordion>
             </div>
+            </>
         )
     }
 }

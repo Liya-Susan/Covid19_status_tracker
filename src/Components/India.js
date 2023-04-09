@@ -3,6 +3,7 @@ import {Card} from 'react-bootstrap';
 import Statedata from './Statedata';
 import axios from 'axios';
 
+
 class India extends Component{
     constructor(){
         super();
@@ -20,10 +21,16 @@ class India extends Component{
             <div className="row">
                  <div>
                         <br/>
-                        <img  src='https://www.worldometers.info/img/flags/small/tn_in-flag.gif' style={{ height: 35 }} />
-                        <h3>INDIA</h3>
+                        <div className="col-md-12 m-3">
+                            <div className="row">
+                                <img className="col-md-1" src='https://www.worldometers.info/img/flags/small/tn_in-flag.gif' style={{ height: 35 }} />
+                                <h3 className="col-md-3 ">INDIA</h3>
+                               
+                        </div>
+                        </div>
+                        
                  </div>
-                 <div className="col-md-12">
+                 <div className="col-md-12 m-3">
                      <div className="row">
                         <div className="col-md-3">
                                 <Card className='badge bg-primary' style={{ width: '16rem' }}>

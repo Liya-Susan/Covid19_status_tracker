@@ -1,12 +1,15 @@
 import React,{Component} from "react";
 import axios from "axios";
+import Form from 'react-bootstrap/Form';
+
 
 class World extends Component{
    
         constructor(){
             super();
             this.state ={
-                data : []
+                data : [],
+                searchCountries:""
             };
         }
 
@@ -16,7 +19,19 @@ class World extends Component{
             })
         }
         render(){
+            const dt=this.state.data;
+            const filterCountries = dt.filter((item) => {
+                return this.state.searchCountries !== ""
+                  ? item.country.toLowerCase().includes(this.state.searchCountries.toLowerCase())
+                  : item;
+              });
         return(
+            <>
+            <Form className="col-md-12 mt-5">
+                                <Form.Group className="mb-3" controlId="formBasicSearch">
+                                        <Form.Control type="text" placeholder="Search a Country" onChange={(e)=>this.setState({searchCountries : e.target.value})}/>
+                                </Form.Group>
+                                </Form>
             <table className="table table-primary table-bordered table-striped">
                 <thead>
                     <tr>
@@ -28,7 +43,7 @@ class World extends Component{
                 </thead>
                 <tbody>
                     {
-                        this.state.data.map((itm,ky)=>{
+                        filterCountries.map((itm,ky)=>{
                             return(
                                 <tr>
                                     <td>{itm.country} <img style={{width:'60px',marginLeft:'30px'}} src={itm.countryInfo.flag}/></td>
@@ -41,6 +56,7 @@ class World extends Component{
                     }
                 </tbody>
             </table>
+            </>
         )
     }
 }
